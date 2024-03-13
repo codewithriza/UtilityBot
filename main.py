@@ -1,12 +1,22 @@
+# main.py
+
 import discord
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix='!')
+intents = discord.Intents.default()
+intents.typing = False
+intents.presences = False
+
+bot = commands.Bot(command_prefix='!', intents=intents)
+
 
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user}')
 
-bot.load_extension('cogs.ticket')
+    # Load Cogs
+    bot.load_extension('cogs.ticket')
 
-bot.run('TOKEN')
+
+# Your token here
+bot.run('BOT_TOKEN')
